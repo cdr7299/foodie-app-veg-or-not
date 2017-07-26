@@ -101,6 +101,7 @@ foodieApp.controller('restaurantController',function($scope,$routeParams,$http) 
 			},
 			'data': data
 		}).then(function (response) {
+				console.log(response);
 				var ingredients = response.data.outputs[0].data.concepts;				
 	  			for (var i =0;i<ingredients.length;i++) {
 	  				$scope.ingredients.push(ingredients[i].name);
@@ -112,6 +113,7 @@ foodieApp.controller('restaurantController',function($scope,$routeParams,$http) 
 	        	console.log(xhr);
 	        })
 		}
+		
 		$scope.ingredients = [];
 		$scope.probabilityvalue=[];
 
@@ -119,10 +121,12 @@ foodieApp.controller('restaurantController',function($scope,$routeParams,$http) 
 			var flag_quit =0;
 			ing_list = angular.copy($scope.ingredients); //hard copy
 			prob_value= $scope.probabilityvalue;
-			var elements = prob_value.filter(function(a){return a > 0.75;});
-			ing_list.splice(elements.length,20)
+			var elements = prob_value.filter(function(a){return a > 0.85;});
+			ing_list.splice(elements.length,20);
 			var nonveg = ["egg","meat","bacon","chicken","sushi","pork","steak"];
-
+			var additionnonveg = "<div><img src='http://21425-presscdn.pagely.netdna-cdn.com/wp-content/uploads/2013/05/non-veg-300x259.jpg' class='vegnonveg' ></div>"
+			var additionveg = "<div><img src='http://21425-presscdn.pagely.netdna-cdn.com/wp-content/uploads/2013/05/veg-300x259.jpg' class='vegnonveg' ></div>"
+			
 			for(j=0;j<ing_list.length;j++){
 				for(i=0;i<nonveg.length;i++){
 					if(ing_list[j] == nonveg[i]){
@@ -131,12 +135,12 @@ foodieApp.controller('restaurantController',function($scope,$routeParams,$http) 
 					}
 				}
 			if(flag_quit==1){
-				$(".rest-extra").css("background-color", "red");	
+				$(".rest-extra").append(additionnonveg);	
 				break;
 			}
 
 		}
-		if(flag_quit==0){$(".rest-extra").css("background-color", "green");}
+		if(flag_quit==0){$(".rest-extra").append(additionveg);}
 	}
 	
 });

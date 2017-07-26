@@ -188,14 +188,35 @@ body {
 
 #getIngredients-button{
 
-        position: absolute;
+      /*  position: absolute;
     margin-left: 172px;
-    margin-top: -27px
+    margin-top: -27px*/
 }
 
 #getIngredients-button2{
 
-        position: absolute;
+ /*       position: absolute;
         margin-left: 296px;
-        margin-top: -27px;
+        /*margin-top: -27px;*/*/
+}
+
+.list-buttons{
+
+    list-style: none;
+    margin-left: 73px;
+}
+
+.vegnonveg{
+
+        width: 72px;
+        height: 61px;
+        position: absolute;
+        left: 255px;
+        top: 383px;
+}
+
+.to-do-list{
+    position: absolute;
+        right: -213px;
+        top: 13px;
 }
